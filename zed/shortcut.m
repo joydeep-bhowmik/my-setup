@@ -1,6 +1,8 @@
 Ctrl + Shift + /   = Agent Panel
 Ctrl + Shift + I   = Edit Prediction
-Ctrl + B           = Project Panel
+Ctrl + Shift + E   = Project Panel
+Ctrl +  B          = toggle right doc
+Ctrl + Shift + B   = toggle left doc 
 Ctrl + Shift + F   = Project Search
 Ctrl + Shift + P   = Command Palette
 Ctrl + `           = Terminal
