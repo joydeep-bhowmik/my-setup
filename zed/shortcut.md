@@ -1,5 +1,3 @@
-# Keyboard Shortcuts
-
 | Shortcut              | Action                  |
 |----------------------|------------------------|
 | Ctrl + Shift + /     | Agent Panel            |
