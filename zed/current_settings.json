@@ -1,11 +1,36 @@
 {
+  "cli_default_open_behavior": "existing_window",
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+        },
+      },
+      "enable_lsp_tasks": true,
+    },
+  },
   "edit_predictions": {
     "provider": "zed",
   },
   "vim_mode": false,
-  "disable_ai": false,
+  "disable_ai": true,
   "soft_wrap": "editor_width",
   "agent": {
+    "dock": "right",
     "inline_assistant_model": {
       "provider": "ollama",
       "model": "qwen2.5-coder:latest",
@@ -54,11 +79,15 @@
   "tab_bar": {
     "show": false,
   },
+  "max_tabs": 10,
   "toolbar": {
     "quick_actions": false,
   },
   "status_bar": {
     "experimental.show": false,
+    "active_language_button": true,
+    "cursor_position_button": true,
+    "line_endings_button": false,
   },
   "project_panel": {
     "dock": "right",
@@ -76,6 +105,7 @@
     },
   },
   "outline_panel": {
+    "dock": "left",
     "default_width": 300,
     "indent_guides": {
       "show": "never",
@@ -93,7 +123,10 @@
     "runnables": false,
   },
   "indent_guides": {
+    "line_width": 0,
     "enabled": true,
+    "active_line_width": 4,
+    "coloring": "fixed",
   },
   "ui_font_family": "Dank Mono",
   "ui_font_size": 20,
@@ -113,11 +146,11 @@
   "drag_and_drop_selection": {
     "enabled": false,
   },
-  "seed_search_query_from_cursor": "never",
+  "seed_search_query_from_cursor": "always",
   "current_line_highlight": "none",
   "show_whitespaces": "none",
   "tab_size": 2,
-  "auto_indent": "none",
+  "auto_indent": "syntax_aware",
   "auto_indent_on_paste": false,
   "show_completions_on_input": true,
   "show_completion_documentation": false,
@@ -153,20 +186,28 @@
   },
   "languages": {
     "PHP": {
-      "language_servers": ["intelephense", "!phpactor", "!phptools"],
+      "language_servers": ["intelephense", "!phptools"],
       "formatter": {
         "external": {
           "command": "powershell.exe",
           "arguments": [
             "-NoProfile",
             "-Command",
-            "$tmp = New-TemporaryFile; $input | Set-Content -LiteralPath $tmp; vendor/bin/pint $tmp --quiet; Get-Content -LiteralPath $tmp; Remove-Item $tmp",
+            "$tmp = New-TemporaryFile; $input | Set-Content -LiteralPath $tmp; pint $tmp --quiet; Get-Content -LiteralPath $tmp; Remove-Item $tmp",
           ],
         },
       },
     },
     "Blade": {
-      "language_servers": ["tailwindcss-language-server"],
+      "language_servers": [
+        "intelephense",
+        "html-language-server",
+        "javascript-language-server",
+        "css-lsp",
+        "vtsls",
+        "tailwindcss-language-server",
+        "...",
+      ],
       "tab_size": 4,
       "formatter": {
         "external": {
@@ -175,8 +216,31 @@
         },
       },
     },
+    "JavaScript": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"],
+        },
+      },
+    },
+    "TypeScript": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": ["--stdin-filepath", "{buffer_path}"],
+        },
+      },
+    },
     "HTML": {
-      "language_servers": ["tailwindcss-language-server"],
+      "language_servers": [
+        "html-language-server",
+        "css-lsp",
+        "vtsls",
+        "tailwindcss-language-server",
+        "...",
+      ],
+
       "formatter": {
         "external": {
           "command": "powershell.exe",
